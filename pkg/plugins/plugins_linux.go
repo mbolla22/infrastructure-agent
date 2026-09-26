@@ -69,6 +69,12 @@ func RegisterPlugins(agent *agnt.Agent) error {
 		// register our plugins
 		agent.RegisterPlugin(pluginsLinux.NewUpstartPlugin(ids.PluginID{"services", "upstart"}, agent.Context))
 		agent.RegisterPlugin(pluginsLinux.NewSystemdPlugin(agent.Context))
+		agent.RegisterPlugin(pluginsLinux.NewKafkaSpansPlugin(agent.Context))
+		agent.RegisterPlugin(pluginsLinux.NewExternalServiceMonitorPlugin(agent.Context))
+		agent.RegisterPlugin(pluginsLinux.NewNginxSpansPlugin(agent.Context))
+		agent.RegisterPlugin(pluginsLinux.NewPostgresSpansPlugin(agent.Context))
+		agent.RegisterPlugin(pluginsLinux.NewHAProxySpansPlugin(agent.Context))
+		agent.RegisterPlugin(pluginsLinux.NewElasticsearchSpansPlugin(agent.Context))
 		agent.RegisterPlugin(pluginsLinux.NewFacterPlugin(agent.Context))
 		if config.FilesConfigOn {
 			agent.RegisterPlugin(NewConfigFilePlugin(ids.PluginID{"files", "config"}, agent.Context))
